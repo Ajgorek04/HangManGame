@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url("imgs/bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  min-height: 100vh;
+  color: #ffe4c4;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.popUpWindow {
+  transform: translateY(-200%);
+  padding: 3rem;
+  background-color: rgba(255, 228, 196, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 1);
+}
+
+.popUpWindow header {
+  text-align: center;
+}
+
+.categoriesText {
+  margin: 5rem 0px;
+  text-align: center;
+}
+
+.categories {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.categories li {
+  border: 1px solid #ffe4c4;
+  cursor: pointer;
+  text-align: center;
+  flex-basis: 0;
+  flex: 1;
+  padding: 0.5rem 1rem;
+  min-width: 200px;
+}
+
+.categories li:hover {
+  background-color: #ffe4c4;
+  color: black;
+}
+
+@media (max-width: 1200px) {
+  .categories {
+    flex-direction: column;
+  }
+}
