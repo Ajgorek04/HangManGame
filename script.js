@@ -7,24 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const categoriesLI = document.querySelectorAll(".categories li");
 const yourCategory = document.querySelector("#yourCategory");
-const food = ["Pizza", "Fries", "Mielone", "Kotlet Schabowy"];
-const animals = ["Dog", "Cat", "Horse", "Fish"];
-const cars = ["Audi", "BMW", "Porsche"];
+const food = ["PIZZA", "FRIES", "MIELONE", "SCHABOWY"];
+const animals = ["DOG", "CAT", "HORSE", "FISH"];
+const cars = ["AUDI", "BMW", "PORSCHE"];
+let selectedWord = "";
 
 categoriesLI.forEach((li) => {
   li.addEventListener("click", (e) => {
     const keysDiv = document.querySelector(".keys");
     keysDiv.innerHTML = "";
 
-    for (let i = 65; i <= 90; i++) {
-      const letter = String.fromCharCode(i);
+    for (i = 65; i <= 90; i++) {
       const button = document.createElement("button");
+      const letter = String.fromCharCode(i);
       button.textContent = letter;
       keysDiv.appendChild(button);
     }
 
     const selectedCategory = e.target.textContent;
-    let selectedWord = "";
 
     if (selectedCategory === "Food") {
       const randomIndex = Math.floor(Math.random() * food.length);
@@ -47,19 +47,7 @@ categoriesLI.forEach((li) => {
       yourCategory.textContent += ` ${selectedCategory}`;
     }
 
-    const underscores = generateUnderscores(selectedWord);
-    const wordElement = document.querySelector(".word span");
-    wordElement.textContent = underscores;
-
     popUpBox.style.display = "none";
     main.style.display = "block";
   });
 });
-
-function generateUnderscores(word) {
-  let underscores = "";
-  for (let i = 0; i < word.length; i++) {
-    underscores += "_ ";
-  }
-  return underscores;
-}
