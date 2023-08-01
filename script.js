@@ -10,7 +10,8 @@ const yourCategory = document.querySelector("#yourCategory");
 const food = ["PIZZA", "FRIES", "MIELONE", "SCHABOWY"];
 const animals = ["DOG", "CAT", "HORSE", "FISH"];
 const cars = ["AUDI", "BMW", "PORSCHE"];
-let selectedWord = "";
+let selectedWord;
+let selectedCategory;
 
 categoriesLI.forEach((li) => {
   li.addEventListener("click", (e) => {
@@ -24,7 +25,7 @@ categoriesLI.forEach((li) => {
       keysDiv.appendChild(button);
     }
 
-    const selectedCategory = e.target.textContent;
+    selectedCategory = e.target.textContent;
 
     if (selectedCategory === "Food") {
       const randomIndex = Math.floor(Math.random() * food.length);
@@ -47,7 +48,30 @@ categoriesLI.forEach((li) => {
       yourCategory.textContent += ` ${selectedCategory}`;
     }
 
+    const spanWord = document.querySelector(".word");
+    const wordLength = selectedWord.length;
+    const hiddenWordArray = selectedWord
+      .split("")
+      .map((letter) => "_")
+      .join(" ");
+
+    spanWord.textContent = hiddenWordArray;
+
     popUpBox.style.display = "none";
     main.style.display = "block";
   });
+});
+
+// A function that will change the styles of the button with the right letter
+
+const buttons = document.querySelector(".keys");
+
+buttons.addEventListener("click", (e) => {
+  const clickedButton = e.target;
+  if (clickedButton.tagName === "BUTTON") {
+    if (selectedWord.includes(clickedButton.textContent)) {
+      clickedButton.style.opacity = "0.1";
+      clickedButton.style.cursor = "unset";
+    }
+  }
 });
