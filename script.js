@@ -73,6 +73,7 @@ buttons.addEventListener("click", (e) => {
   const clickedButton = e.target;
   if (clickedButton.tagName === "BUTTON") {
     if (selectedWord.includes(clickedButton.textContent)) {
+      clickedButton.style.backgroundColor = "#05ed18";
       clickedButton.style.opacity = "0.1";
       clickedButton.style.cursor = "unset";
 
@@ -80,6 +81,11 @@ buttons.addEventListener("click", (e) => {
         guessedLetters.push(clickedButton.textContent);
         updateWord();
       }
+    } else {
+      clickedButton.style.backgroundColor = "#ff0000";
+      clickedButton.style.opacity = "0.1";
+      clickedButton.style.cursor = "unset";
+      wrongGuess();
     }
   }
 });
@@ -94,4 +100,11 @@ function updateWord() {
   // .join bo map nie dodaje spacji, np petla for dodaje
 
   spanWord.textContent = updateWordWordArray;
+}
+
+let wrongLetter = 0;
+
+function wrongGuess() {
+  wrongLetter += 1;
+  console.log(wrongLetter);
 }
