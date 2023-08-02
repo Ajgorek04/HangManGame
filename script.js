@@ -65,6 +65,9 @@ categoriesLI.forEach((li) => {
 // A function that will change the styles of the button with the right letter
 
 const buttons = document.querySelector(".keys");
+const spanWord = document.querySelector(".word");
+
+let guessedLetters = [];
 
 buttons.addEventListener("click", (e) => {
   const clickedButton = e.target;
@@ -72,6 +75,23 @@ buttons.addEventListener("click", (e) => {
     if (selectedWord.includes(clickedButton.textContent)) {
       clickedButton.style.opacity = "0.1";
       clickedButton.style.cursor = "unset";
+
+      if (!guessedLetters.includes(clickedButton.textContent)) {
+        guessedLetters.push(clickedButton.textContent);
+        updateWord();
+      }
     }
   }
 });
+
+function updateWord() {
+  const updateWordWordArray = selectedWord
+    .split("")
+    .map((letter) => (guessedLetters.includes(letter) ? letter : "_"))
+    // ? letter : "_"
+    // Sprawdza czy litera znajduje sie w tablicy, jesli tak to zwraca ta litere (letter), a jesli nie to zwraca "_"
+    .join(" ");
+  // .join bo map nie dodaje spacji, np petla for dodaje
+
+  spanWord.textContent = updateWordWordArray;
+}
