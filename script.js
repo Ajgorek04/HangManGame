@@ -112,6 +112,43 @@ let wrongLetter = 0;
 
 function wrongGuess() {
   wrongLetter += 1;
-  console.log(wrongLetter);
-  img.src = `../imgs/hangman${5}.png`;
+
+  switch (wrongLetter) {
+    case 1:
+      img.src = `../imgs/hangman${1}.png`;
+      break;
+    case 2:
+      img.src = `../imgs/hangman${2}.png`;
+      break;
+    case 3:
+      img.src = `../imgs/hangman${3}.png`;
+      break;
+    case 4:
+      img.src = `../imgs/hangman${4}.png`;
+      break;
+    case 5:
+      img.src = `../imgs/hangman${5}.png`;
+      break;
+    case 6:
+      img.src = `../imgs/hangman${6}.png`;
+      break;
+    case 7:
+      img.src = `../imgs/hangman${7}.png`;
+      break;
+    case 8:
+      img.src = `../imgs/hangman${8}.png`;
+      break;
+    case 9:
+      img.src = `../imgs/hangman${9}.png`;
+      break;
+    case 10:
+      img.src = `../imgs/hangman${10}.png`;
+      break;
+    case 11:
+      img.src = `../imgs/hangman${11}.png`;
+      break;
+    default:
+      console.log("LOSE");
+      break;
+  }
 }
