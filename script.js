@@ -68,6 +68,7 @@ const buttons = document.querySelector(".keys");
 const spanWord = document.querySelector(".word");
 
 let guessedLetters = [];
+let wrongGuessedLetters = [];
 
 buttons.addEventListener("click", (e) => {
   const clickedButton = e.target;
@@ -82,10 +83,13 @@ buttons.addEventListener("click", (e) => {
         updateWord();
       }
     } else {
-      clickedButton.style.backgroundColor = "#ff0000";
-      clickedButton.style.opacity = "0.1";
-      clickedButton.style.cursor = "unset";
-      wrongGuess();
+      if (!wrongGuessedLetters.includes(clickedButton.textContent)) {
+        clickedButton.style.backgroundColor = "#ff0000";
+        clickedButton.style.opacity = "0.1";
+        clickedButton.style.cursor = "unset";
+        wrongGuessedLetters.push(clickedButton.textContent);
+        wrongGuess();
+      }
     }
   }
 });
@@ -102,9 +106,12 @@ function updateWord() {
   spanWord.textContent = updateWordWordArray;
 }
 
+const img = document.querySelector(".hangManImg img");
+
 let wrongLetter = 0;
 
 function wrongGuess() {
   wrongLetter += 1;
   console.log(wrongLetter);
+  img.src = `../imgs/hangman${5}.png`;
 }
