@@ -58,7 +58,7 @@ categoriesLI.forEach((li) => {
     spanWord.textContent = hiddenWordArray;
 
     popUpBox.style.display = "none";
-    main.style.display = "block";
+    main.style.display = "flex";
   });
 });
 
@@ -66,9 +66,12 @@ categoriesLI.forEach((li) => {
 
 const buttons = document.querySelector(".keys");
 const spanWord = document.querySelector(".word");
+const winBox = document.querySelector(".winBox");
+const box2 = document.querySelector(".box2");
 
 let guessedLetters = [];
 let wrongGuessedLetters = [];
+let displayedWord;
 
 buttons.addEventListener("click", (e) => {
   const clickedButton = e.target;
@@ -81,6 +84,12 @@ buttons.addEventListener("click", (e) => {
       if (!guessedLetters.includes(clickedButton.textContent)) {
         guessedLetters.push(clickedButton.textContent);
         updateWord();
+        displayedWord = spanWord.textContent.replace(/ /g, "");
+
+        if (displayedWord === selectedWord) {
+          winBox.style.display = "flex";
+          box2.classList.add("slide-in");
+        }
       }
     } else {
       if (!wrongGuessedLetters.includes(clickedButton.textContent)) {
@@ -107,6 +116,8 @@ function updateWord() {
 }
 
 const img = document.querySelector(".hangManImg img");
+const loseBox = document.querySelector(".loseBox");
+const hiddenWord = document.querySelector("#hiddenWord");
 
 let wrongLetter = 0;
 
@@ -149,6 +160,28 @@ function wrongGuess() {
       break;
     default:
       console.log("LOSE");
+      loseBox.style.display = "flex";
+      box.classList.add("slide-in");
+      hiddenWord.textContent += ` ${selectedWord}`;
       break;
   }
+}
+
+// NEW GAME
+
+const playAgainBtn = document.querySelectorAll(".playAgain");
+const box = document.querySelector(".box");
+playAgainBtn.forEach((button) => {
+  button.addEventListener("click", newCard);
+});
+
+function newCard() {
+  box.classList.remove("slide-in");
+  box2.classList.remove("slide-in");
+  box.classList.add("slide-out");
+  box2.classList.add("slide-out");
+
+  setTimeout(function () {
+    location.reload();
+  }, 1000);
 }
